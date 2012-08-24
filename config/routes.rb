@@ -1,6 +1,4 @@
 Goalbook::Application.routes.draw do
-  
-  get "users/show"
 
   get "static_pages/home"
 
@@ -9,6 +7,8 @@ Goalbook::Application.routes.draw do
   resources :tweets
 
   root :to => 'static_pages#home'
+
+  resources :users, :only => :show
 
 
 

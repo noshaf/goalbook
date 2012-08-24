@@ -1,10 +1,10 @@
-<div class="span4">
+<div class="span12">
 	<div class="well" id="twitter">
 		<table class="table table-bordered">
-			<h3><%= current_user.email %></h3>
+			<h1><%= @user.email %></h1>
 			<tr>
 				<td>
-					<%= current_user.tweets.count %>
+					<%= @user.tweets.count %>
 					<h6>TWEETS</h6>
 				</td>
 				<td>
@@ -18,11 +18,21 @@
 			</tr>
 
 		</table>
-		<%= form_for @tweet do |f| %>
-			<%= f.text_area :text, :style => "width: 320px; height: 73px; overflow: hidden; margin-top: 0px; margin-bottom: 0px;"  %><br>
-			<br>
-			<center><%= f.submit %></center>
-		<% end %>
+	</div>
+</div>
+
+<div class="span4">
+	<div class="well" id="twitter">
+		<h3>Other Users</h3>
+		<table class="table table-hover">
+			<% User.all.each do |u| %>
+				<tr>
+					<td>
+						<%= link_to u.email, user_path(u) %><br>
+					</td>
+				</tr>
+			<% end %>
+		</table>
 	</div>
 </div>
 <div class="span8">
@@ -35,7 +45,6 @@
 						<%= link_to t.user.email, user_path(t.user) %><br>
 						<br>
 						<%= t.text %>
-						<%= link_to "delete?", tweet_path(t), :method => :delete if current_user == t.user %>
 						<br>
 					</td>
 				</tr>
@@ -43,5 +52,3 @@
 		</table>
 	</div>
 </div>
-
-
